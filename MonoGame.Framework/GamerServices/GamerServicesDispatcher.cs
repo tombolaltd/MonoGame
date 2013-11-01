@@ -59,6 +59,6 @@ namespace Microsoft.Xna.Framework.GamerServices
 
         public static IntPtr WindowHandle { get; set; }
 
-        public static event EventHandler<EventArgs> InstallingTitleUpdate;
+        //public static event EventHandler<EventArgs> InstallingTitleUpdate;
     }
 }

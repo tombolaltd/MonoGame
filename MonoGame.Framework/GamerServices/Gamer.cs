@@ -51,7 +51,7 @@ namespace Microsoft.Xna.Framework.GamerServices
         Object _tag;
         bool disposed;
 
-        LeaderboardWriter _leaderboardWriter;
+        LeaderboardWriter _leaderboardWriter = null;
 
         #region Methods
 

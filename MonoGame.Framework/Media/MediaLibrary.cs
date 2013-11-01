@@ -50,7 +50,9 @@ namespace Microsoft.Xna.Framework.Media
 {
 	public class MediaLibrary : IDisposable
 	{
+#if IOS
         private PlaylistCollection _playLists;
+#endif 
 
 		public MediaLibrary ()
 		{

@@ -61,7 +61,7 @@ namespace MonoGame.Framework.WindowsPhone
             }
         }
 
-        class DrawingSurfaceBackgroundContentProvider : DrawingSurfaceBackgroundContentProviderNativeBase                                                        
+        class DrawingSurfaceBackgroundContentProvider : DrawingSurfaceBackgroundContentProviderNativeBase
         {
             private readonly SurfaceUpdateHandler _surfaceUpdateHandler;
 
@@ -83,32 +83,7 @@ namespace MonoGame.Framework.WindowsPhone
 
             public override void Draw(Device device, DeviceContext context, RenderTargetView renderTargetView)
             {
-<<<<<<< HEAD
                 _surfaceUpdateHandler.Draw(device, context, renderTargetView);
-=======
-                var deviceChanged = _device != device || _context != context;
-                _device = device;
-                _context = context;
-
-                if (!_game.Initialized)
-                {
-                    DrawingSurfaceState.Device = _device;
-                    DrawingSurfaceState.Context = _context;
-                    DrawingSurfaceState.RenderTargetView = renderTargetView;
-                    deviceChanged = false;
-
-                    // Start running the game.
-                    _game.Run(GameRunBehavior.Asynchronous);
-                }
-
-                if (deviceChanged)
-                    _game.GraphicsDevice.UpdateDevice(device, context);
-                _game.GraphicsDevice.UpdateTarget(renderTargetView);
-                _game.GraphicsDevice.ResetRenderTargets();
-                _game.Tick();
-
-                _host.RequestAdditionalFrame();
->>>>>>> upstream/master
             }
 
             public override void PrepareResources(DateTime presentTargetTime, ref Size2F desiredRenderTargetSize)
@@ -117,7 +92,7 @@ namespace MonoGame.Framework.WindowsPhone
             }
         }
 
- 
+
         /// <summary>
         /// Creates your Game class initializing it to worth within a XAML application window.
         /// </summary>
@@ -133,7 +108,7 @@ namespace MonoGame.Framework.WindowsPhone
                 throw new NullReferenceException("The page parameter cannot be null!");
 
             UIElement drawingSurface = page.Content as DrawingSurfaceBackgroundGrid;
-            
+
             MediaElement mediaElement = null;
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(page.Content); i++)
             {
@@ -203,6 +178,68 @@ namespace MonoGame.Framework.WindowsPhone
                 ds.Unloaded += OnDrawingSurfaceUnloaded;
                 ds.Loaded += onLoadedHandler;
             }
+
+            // Return the constructed, but not initialized game.
+            return game;
+        }
+
+        static public T Create(string launchParameters, PhoneApplicationPage page, DrawingSurface drawingSurface, MediaElement mediaElement)
+        {
+            if (launchParameters == null)
+                throw new NullReferenceException("The launch parameters cannot be null!");
+
+            if (page == null)
+                throw new NullReferenceException("The page cannot be null!");
+
+            if (drawingSurface == null)
+                throw new NullReferenceException("The drawing surface cannot be null!");
+
+            if (mediaElement == null)
+                throw new NullReferenceException("The media element cannot be null!");
+
+            Microsoft.Xna.Framework.Media.MediaPlayer._mediaElement = mediaElement;
+
+            WindowsPhoneGamePlatform.LaunchParameters = launchParameters;
+            WindowsPhoneGameWindow.Width = ((FrameworkElement)drawingSurface).ActualWidth;
+            WindowsPhoneGameWindow.Height = ((FrameworkElement)drawingSurface).ActualHeight;
+            WindowsPhoneGameWindow.Page = page;
+
+            Microsoft.Xna.Framework.Audio.SoundEffect.InitializeSoundEffect();
+
+            page.BackKeyPress += Microsoft.Xna.Framework.Input.GamePad.GamePageWP8_BackKeyPress;
+
+            // Construct the game.
+            var game = new T();
+            if (game.graphicsDeviceManager == null)
+                throw new NullReferenceException("You must create the GraphicsDeviceManager in the Game constructor!");
+
+            SurfaceTouchHandler surfaceTouchHandler = new SurfaceTouchHandler();
+
+            var drawingSurfaceUpdateHandler = new DrawingSurfaceUpdateHandler(game);
+            DrawingSurface ds = (DrawingSurface)drawingSurface;
+
+            RoutedEventHandler onLoadedHandler = (object sender, RoutedEventArgs e) =>
+            {
+                if (sender != ds)
+                    return;
+
+                if (initializedSurfaces.ContainsKey(ds) == false)
+                {
+                    // Hook-up native component to DrawingSurface
+                    ds.SetContentProvider(drawingSurfaceUpdateHandler.ContentProvider);
+                    ds.SetManipulationHandler(surfaceTouchHandler);
+
+                    // Make sure surface is not initialized twice...
+                    initializedSurfaces.Add(ds, true);
+                }
+            };
+
+            // Don't wait for loaded event here since control might
+            // be loaded already.
+            onLoadedHandler(ds, null);
+
+            ds.Unloaded += OnDrawingSurfaceUnloaded;
+            ds.Loaded += onLoadedHandler;
 
             // Return the constructed, but not initialized game.
             return game;

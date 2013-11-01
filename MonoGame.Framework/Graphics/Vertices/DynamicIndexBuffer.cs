@@ -47,7 +47,7 @@ namespace Microsoft.Xna.Framework.Graphics
         /// <summary>
         /// Special offset used internally by GraphicsDevice.DrawUserXXX() methods.
         /// </summary>
-        internal int UserOffset;
+        internal int UserOffset = 0;
 
 		public bool IsContentLost { get { return false; } }
 		
