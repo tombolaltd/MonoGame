@@ -27,6 +27,7 @@ SOFTWARE.
 
 using System;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace Microsoft.Xna.Framework
 {
@@ -319,6 +320,7 @@ namespace Microsoft.Xna.Framework
         /// Gets or sets the blue component of <see cref="Color"/>.
         /// </summary>
         [DataMember]
+        [XmlAttribute]
         public byte B
         {
             get
@@ -335,6 +337,7 @@ namespace Microsoft.Xna.Framework
         /// Gets or sets the green component of <see cref="Color"/>.
         /// </summary>
         [DataMember]
+        [XmlAttribute]
         public byte G
         {
             get
@@ -351,6 +354,7 @@ namespace Microsoft.Xna.Framework
         /// Gets or sets the red component of <see cref="Color"/>.
         /// </summary>
         [DataMember]
+        [XmlAttribute]
         public byte R
         {
             get
@@ -367,6 +371,7 @@ namespace Microsoft.Xna.Framework
         /// Gets or sets the alpha component of <see cref="Color"/>.
         /// </summary>
         [DataMember]
+        [XmlAttribute]
         public byte A
         {
             get
@@ -1761,6 +1766,7 @@ namespace Microsoft.Xna.Framework
         /// Gets or sets packed value of this <see cref="Color"/>.
         /// </summary>
         [CLSCompliant(false)]
+        [XmlIgnore]
         public UInt32 PackedValue
         {
             get { return _packedValue; }

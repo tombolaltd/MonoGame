@@ -29,6 +29,7 @@ using System;
 using System.Text;
 using System.Globalization;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace Microsoft.Xna.Framework
 {
@@ -48,9 +49,11 @@ namespace Microsoft.Xna.Framework
         #region Public Fields
       
         [DataMember]
+        [XmlAttribute]
         public float X;
         
         [DataMember]
+        [XmlAttribute]
         public float Y;
 
         #endregion Public Fields
