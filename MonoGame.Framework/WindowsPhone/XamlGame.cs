@@ -83,7 +83,32 @@ namespace MonoGame.Framework.WindowsPhone
 
             public override void Draw(Device device, DeviceContext context, RenderTargetView renderTargetView)
             {
+<<<<<<< HEAD
                 _surfaceUpdateHandler.Draw(device, context, renderTargetView);
+=======
+                var deviceChanged = _device != device || _context != context;
+                _device = device;
+                _context = context;
+
+                if (!_game.Initialized)
+                {
+                    DrawingSurfaceState.Device = _device;
+                    DrawingSurfaceState.Context = _context;
+                    DrawingSurfaceState.RenderTargetView = renderTargetView;
+                    deviceChanged = false;
+
+                    // Start running the game.
+                    _game.Run(GameRunBehavior.Asynchronous);
+                }
+
+                if (deviceChanged)
+                    _game.GraphicsDevice.UpdateDevice(device, context);
+                _game.GraphicsDevice.UpdateTarget(renderTargetView);
+                _game.GraphicsDevice.ResetRenderTargets();
+                _game.Tick();
+
+                _host.RequestAdditionalFrame();
+>>>>>>> upstream/master
             }
 
             public override void PrepareResources(DateTime presentTargetTime, ref Size2F desiredRenderTargetSize)

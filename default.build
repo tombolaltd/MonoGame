@@ -41,6 +41,7 @@
     <nant buildfile="ProjectTemplates/MonoDevelop/MonoDevelop.MonoGame/default.build" target="build" />
     <nant buildfile="ProjectTemplates/VisualStudio2010/default.build" target="build" />
     <nant buildfile="ProjectTemplates/VisualStudio2012/default.build" target="build" />
+<<<<<<< HEAD
     <nant buildfile="IDE/MonoDevelop/default.build" target="build"/>
 
     <call target="buildtests"/>
@@ -49,6 +50,14 @@
   </target>
 
   <target name="buildpsm" description="Build Play Station Mobile" depends="clean">
+=======
+		
+		<nant buildfile="Installers/default.build" target="build" />
+		
+	</target>
+  
+    <target name="clean" description="Clean all binaries">
+>>>>>>> upstream/master
     <if test="${os == 'Win32NT'}">
       <if test="${file::exists('C:\Program Files (x86)\SCE\PSM\tools\PsmStudio\bin\mdtool.exe')}">
         <exec program="mdtool.exe" basedir="${psmtooldir}" commandline="build -t:Clean -c:Release MonoGame.Framework.PSMobile.sln" />

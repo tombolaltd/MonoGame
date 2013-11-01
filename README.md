@@ -20,6 +20,7 @@ Our goal is to make it easy for XNA developers to create cross-platform games wi
 
 There are a few pre-requisites that you should be aware of for the various platforms. Please check them over [MonoGame](http://monogame.net/downloads) website.
 
+<<<<<<< HEAD
 There are four quick start options available:
 * Download the current stable release from [our website](http://monogame.net/downloads).
 * Download the latest "unstable" installer from [our build server](http://build.monogame.net/job/develop-win/lastSuccessfulBuild/artifact/Installers/Windows/).
@@ -27,6 +28,12 @@ There are four quick start options available:
 * Fork and clone the repo: `https://github.com/mono/MonoGame.git`.
 
 Once you have MonoGame, grab the [MonoGame StarterKits](https://github.com/kungfubanana/MonoGame-StarterKits) or [MonoGame-Samples](https://github.com/CartBlanche/MonoGame-Samples) to help get you started on your first project.
+=======
+There are three quick start options available:
+* Download the latest stable release over [our website](http://monogame.net/downloads).
+* Download the latest [source code](https://github.com/mono/MonoGame/archive/develop.zip).
+* Clone the repo: `https://github.com/mono/MonoGame.git`.
+>>>>>>> upstream/master
 
 ## Bug Tracker
 

@@ -1,6 +1,12 @@
 SetCompressor /SOLID /FINAL lzma
 
+<<<<<<< HEAD
 !include "header.nsh"
+=======
+!define VERSION "3.0"
+!define REVISION "1"
+!define BUILD "0"
+>>>>>>> upstream/master
 !define INSTALLERFILENAME "MonoGame"
 !define APPNAME "MonoGame"
 
@@ -10,6 +16,7 @@ SetCompressor /SOLID /FINAL lzma
 !include "MUI2.nsh"
 !include "InstallOptions.nsh"
 
+<<<<<<< HEAD
 !define MUI_ICON "${FrameworkPath}\monogame.ico"
 
 !define MUI_UNICON "${FrameworkPath}\monogame.ico"
@@ -22,6 +29,20 @@ VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName" "${APPNAME} Development Tool
 VIAddVersionKey /LANG=${LANG_ENGLISH} "CompanyName" "MonoGame"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${INSTALLERVERSION}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductVersion" "${INSTALLERVERSION}"
+=======
+!define MUI_ICON "..\monogame.ico"
+
+!define MUI_UNICON "..\monogame.ico"
+
+Name '${APPNAME} ${VERSION}.${REVISION}'
+OutFile '${INSTALLERFILENAME}Installer-${VERSION}.${REVISION}.exe'
+InstallDir '$PROGRAMFILES\${APPNAME}\v${VERSION}'
+VIProductVersion "${VERSION}.${REVISION}.${BUILD}"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName" "${APPNAME} Development Tools"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "CompanyName" "MonoGame"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${VERSION}.${REVISION}.${BUILD}"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductVersion" "${VERSION}.${REVISION}.${BUILD}"
+>>>>>>> upstream/master
 VIAddVersionKey /LANG=${LANG_ENGLISH} "FileDescription" "${APPNAME} Installer"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalCopyright" "� Copyright MonoGame 2013"
 
@@ -31,10 +52,17 @@ RequestExecutionLevel admin
 ;Interface Configuration
 
 !define MUI_HEADERIMAGE
+<<<<<<< HEAD
 !define MUI_HEADERIMAGE_BITMAP "${FrameworkPath}\monogame.bmp"
 !define MUI_ABORTWARNING
 
 !define MUI_WELCOMEFINISHPAGE_BITMAP "${FrameworkPath}\panel.bmp"
+=======
+!define MUI_HEADERIMAGE_BITMAP "..\monogame.bmp"
+!define MUI_ABORTWARNING
+
+!define MUI_WELCOMEFINISHPAGE_BITMAP "..\panel.bmp"
+>>>>>>> upstream/master
 ;Languages
 
 !insertmacro MUI_PAGE_WELCOME
