@@ -102,8 +102,11 @@ namespace MonoGame.Framework.WindowsPhone
         {
             _game = game;
 
-            _orientation = ToOrientation(Page.Orientation);
-            Page.OrientationChanged += Page_OrientationChanged;
+            if (Page != null)
+            {
+                _orientation = ToOrientation(Page.Orientation);
+                Page.OrientationChanged += Page_OrientationChanged;
+            }
 
             PhoneApplicationService.Current.Activated += (sender, e) => { if (Game.Instance != null) Platform.IsActive = true; };
             PhoneApplicationService.Current.Launching += (sender, e) => { if (Game.Instance != null) Platform.IsActive = true; };

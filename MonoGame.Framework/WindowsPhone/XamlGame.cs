@@ -188,8 +188,8 @@ namespace MonoGame.Framework.WindowsPhone
             if (launchParameters == null)
                 throw new NullReferenceException("The launch parameters cannot be null!");
 
-            if (page == null)
-                throw new NullReferenceException("The page cannot be null!");
+            //if (page == null)
+                //throw new NullReferenceException("The page cannot be null!");
 
             if (drawingSurface == null)
                 throw new NullReferenceException("The drawing surface cannot be null!");
@@ -202,11 +202,11 @@ namespace MonoGame.Framework.WindowsPhone
             WindowsPhoneGamePlatform.LaunchParameters = launchParameters;
             WindowsPhoneGameWindow.Width = ((FrameworkElement)drawingSurface).ActualWidth;
             WindowsPhoneGameWindow.Height = ((FrameworkElement)drawingSurface).ActualHeight;
-            WindowsPhoneGameWindow.Page = page;
+            if (page != null) WindowsPhoneGameWindow.Page = page;
 
             Microsoft.Xna.Framework.Audio.SoundEffect.InitializeSoundEffect();
 
-            page.BackKeyPress += Microsoft.Xna.Framework.Input.GamePad.GamePageWP8_BackKeyPress;
+            if (page != null) page.BackKeyPress += Microsoft.Xna.Framework.Input.GamePad.GamePageWP8_BackKeyPress;
 
             // Construct the game.
             var game = new T();
