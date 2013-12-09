@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7DE47032-A904-4C29-BD22-2D235E8D91BA}</ProjectGuid>
+    <ProjectGuid>{0AFAF568-A23A-4084-A836-974A9D487FA8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Microsoft.Xna.Framework</RootNamespace>
@@ -392,7 +392,7 @@
     <Compile Include="Graphics\States\Blend.cs" />
     <Compile Include="Graphics\States\BlendFunction.cs" />
     <Compile Include="Graphics\States\BlendState.cs" />
-	<Compile Include="Graphics\States\TargetBlendState.cs" />
+    <Compile Include="Graphics\States\TargetBlendState.cs" />
     <Compile Include="Graphics\ClearOptions.cs" />
     <Compile Include="Graphics\GraphicsDeviceStatus.cs" />
     <Compile Include="Graphics\GraphicsProfile.cs" />

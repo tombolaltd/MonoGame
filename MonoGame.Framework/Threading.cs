@@ -130,6 +130,7 @@ namespace Microsoft.Xna.Framework
                 GraphicsExtensions.CheckGLError();
             }
 #elif WINDOWS || LINUX
+
             lock (BackgroundContext)
             {
                 // Make the context current on this thread

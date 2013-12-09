@@ -76,6 +76,15 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="yeti.mmedia">
+      <HintPath>..\..\Tools\MP3Compression\yeti.mmedia\bin\Debug\yeti.mmedia.dll</HintPath>
+    </Reference>
+    <Reference Include="yeti.mp3">
+      <HintPath>..\..\Tools\MP3Compression\yeti.mp3\bin\Debug\yeti.mp3.dll</HintPath>
+    </Reference>
+    <Reference Include="yeti.wmfsdk">
+      <HintPath>..\..\Tools\MP3Compression\yeti.wmfsdk\bin\Debug\yeti.wmfsdk.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Tools\2MGFX\CommandLineParser.cs">
@@ -171,18 +180,6 @@
       <Link>libmojoshader_32.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <ProjectReference Include="..\..\Tools\MP3Compression\yeti.mmedia\yeti.mmedia.csproj">
-      <Project>{315EE7BF-EAE2-42C0-BFC6-CCA9160F3CFE}</Project>
-      <Name>yeti.mmedia</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tools\MP3Compression\yeti.mp3\yeti.mp3.csproj">
-      <Project>{B564FD33-FA50-46B2-B669-2D83DE3AF5E4}</Project>
-      <Name>yeti.mp3</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tools\MP3Compression\yeti.wmfsdk\yeti.wmfsdk.csproj">
-      <Project>{FECB5BEB-AB05-454A-BB14-6A554E897274}</Project>
-      <Name>yeti.wmfsdk</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\ThirdParty\Libs\ManagedPVRTC\x86\pvrtc.dll">
