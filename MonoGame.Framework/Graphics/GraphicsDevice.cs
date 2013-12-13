@@ -2390,6 +2390,35 @@ namespace Microsoft.Xna.Framework.Graphics
 #endif
         }
 
+        /// <summary>
+        /// Experimental!
+        /// </summary>
+        /// <param name="primitiveType"></param>
+        /// <param name="baseVertex"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="numVertices"></param>
+        /// <param name="primitiveCount"></param>
+        /// <param name="instanceCount"></param>
+        public void DrawIndexedInstancedPrimitives(PrimitiveType primitiveType, int baseVertex, int startIndex, int numVertices, int primitiveCount, int instanceCount)
+        {
+            Debug.Assert(_vertexBuffers[0] != null, "The vertex buffer is null!");
+            Debug.Assert(_indexBuffer != null, "The index buffer is null!");
+
+#if DIRECTX
+
+            lock (_d3dContext)
+            {
+                ApplyState(true);
+
+                _d3dContext.InputAssembler.PrimitiveTopology = ToPrimitiveTopology(primitiveType);
+
+                var vertexCount = GetElementCountArray(primitiveType, primitiveCount);
+                _d3dContext.DrawIndexedInstanced(vertexCount, instanceCount, startIndex, baseVertex, primitiveCount);
+            }
+
+#endif
+        }
+
         public void DrawUserPrimitives<T>(PrimitiveType primitiveType, T[] vertexData, int vertexOffset, int primitiveCount) where T : struct, IVertexType
         {
             DrawUserPrimitives(primitiveType, vertexData, vertexOffset, primitiveCount, VertexDeclarationCache<T>.VertexDeclaration);
